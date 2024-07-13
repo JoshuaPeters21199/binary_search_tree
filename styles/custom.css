@@ -1,0 +1,23 @@
+.diagonal-line-right {
+  background: linear-gradient(
+    to bottom right,
+    white 48%,
+    black 48%,
+    black 52%,
+    white 52%
+  );
+  width: 100%;
+  height: 100%;
+}
+
+.diagonal-line-left {
+  background: linear-gradient(
+    to bottom left,
+    white 48%,
+    black 48%,
+    black 52%,
+    white 52%
+  );
+  width: 100%;
+  height: 100%;
+}
