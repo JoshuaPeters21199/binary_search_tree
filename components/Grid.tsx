@@ -11,22 +11,23 @@ function comparator(a: number, b: number) {
   return 0;
 }
 
-const bst = new BinarySearchTree(comparator);
-
-bst.insert(5);
-bst.insert(2);
-bst.insert(3);
-bst.insert(1);
-bst.insert(7);
-bst.insert(6);
-bst.insert(8);
-
-const rootNode = bst.getRootAsPlainObject();
-
 const Grid = () => {
+  const bst = new BinarySearchTree(comparator);
+
+  bst.insert(5);
+  bst.insert(2);
+  bst.insert(3);
+  bst.insert(1);
+  bst.insert(7);
+  bst.insert(6);
+  bst.insert(8);
+  bst.insert(4);
+
+  const rootNode = bst.getRootAsPlainObject();
   return (
     <>
       <pre>{JSON.stringify(rootNode, null, 2)}</pre>
+      <p>{bst.getDepth()}</p>
       <div className='grid grid-cols-7 gap-2'></div>
     </>
   )

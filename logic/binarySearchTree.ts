@@ -119,4 +119,25 @@ export class BinarySearchTree<T> {
     getRootAsPlainObject(): BinarySearchTreeNodePlain<T> | undefined {
         return this.nodeToPlainObject(this.root);
     }
+
+    // Method to calculate the depth of the tree
+    getDepth(): number {
+        if (!this.root) return 0;
+
+        let depth = 0;
+        const queue: { node: BinarySearchTreeNode<T>, level: number }[] = [{ node: this.root, level: 1}];
+
+        while (queue.length > 0) {
+            const { node, level } = queue.shift()!;
+            depth = Math.max(depth, level);
+
+            if (node.leftNode) {
+                queue.push({ node: node.leftNode, level: level + 1 });
+            }
+            if (node.rightNode) {
+                queue.push({ node: node.rightNode, level: level + 1 });
+            }
+        }
+        return depth;
+    }
 }
