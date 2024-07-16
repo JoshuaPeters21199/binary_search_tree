@@ -1,9 +1,4 @@
-// A interface for the plain object representation of a node. This allows us to render a node in a Next.js component.
-interface BinarySearchTreeNodePlain<T> {
-    data: T;
-    leftNode?: BinarySearchTreeNodePlain<T>;
-    rightNode?: BinarySearchTreeNodePlain<T>;
-}
+import { BinarySearchTreeNodePlain } from "./types";
 
 export class BinarySearchTreeNode<T> {
     data: T;
@@ -111,9 +106,17 @@ export class BinarySearchTree<T> {
     }
 
     // Method to convert a node to a plain object
-    
+    private nodeToPlainObject(node: BinarySearchTreeNode<T> | undefined): BinarySearchTreeNodePlain<T> | undefined {
+        if (!node) return undefined;
+        return {
+            data: node.data,
+            leftNode: this.nodeToPlainObject(node.leftNode),
+            rightNode: this.nodeToPlainObject(node.rightNode)
+        }
+    }
 
-    getRoot(): BinarySearchTreeNode<T> | undefined {
-        return this.root;
+    // Method to get the root of the tree as a plalin object
+    getRootAsPlainObject(): BinarySearchTreeNodePlain<T> | undefined {
+        return this.nodeToPlainObject(this.root);
     }
 }

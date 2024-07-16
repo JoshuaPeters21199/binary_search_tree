@@ -1,6 +1,7 @@
 import React from 'react'
 import Node from './Node'
 import { BinarySearchTree } from '@/logic/binarySearchTree'
+import { BinarySearchTreeNodePlain } from '@/logic/types';
 
 function comparator(a: number, b: number) {
   if (a < b) return -1;
@@ -20,35 +21,14 @@ bst.insert(7);
 bst.insert(6);
 bst.insert(8);
 
+const rootNode = bst.getRootAsPlainObject();
+
 const Grid = () => {
   return (
-    <div className='grid grid-cols-7 gap-2'>
-      <h2></h2>
-      {/* <Node activeNode={false} />
-      <Node activeNode={false} />
-      <Node activeNode={false} />
-      <Node activeNode={true} value={8} />
-      <Node activeNode={false} />
-      <Node activeNode={false} />
-      <Node activeNode={false} />
-
-      <Node activeNode={false} />
-      <Node activeNode={false} />
-      <Node activeNode={false} edgeRight={true} />
-      <Node activeNode={false} />
-      <Node activeNode={false} edgeLeft={true} />
-      <Node activeNode={false} />
-      <Node activeNode={false} />
-
-      <Node activeNode={false} />
-      <Node activeNode={true} value={3} />
-      <Node activeNode={false} />
-      <Node activeNode={false} />
-      <Node activeNode={false} />
-      <Node activeNode={true} value={10} />
-      <Node activeNode={false} /> */}
-
-    </div>
+    <>
+      <pre>{JSON.stringify(rootNode, null, 2)}</pre>
+      <div className='grid grid-cols-7 gap-2'></div>
+    </>
   )
 }
 
