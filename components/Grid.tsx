@@ -26,7 +26,8 @@ const Grid = () => {
   return (
     <>
       <pre>{JSON.stringify(rootNode, null, 2)}</pre>
-      <p>{bst.getDepth()}</p>
+      <p>{typeof(rootNode)}</p>
+      <p>{rootNode?.data}</p>
       <div className='grid grid-cols-7 gap-2'></div>
     </>
   )

@@ -105,14 +105,32 @@ export class BinarySearchTree<T> {
         return count;
     }
 
-    // Method to convert a node to a plain object
+    /**
+     * Converts a node and its children to a plain object in BFS order.
+     * @param node - The starting node of the subtree.
+     * @returns The root in a BFS-ordered plain object form.
+     */
     private nodeToPlainObject(node: BinarySearchTreeNode<T> | undefined): BinarySearchTreeNodePlain<T> | undefined {
         if (!node) return undefined;
-        return {
-            data: node.data,
-            leftNode: this.nodeToPlainObject(node.leftNode),
-            rightNode: this.nodeToPlainObject(node.rightNode)
+        
+        const rootPlainNode: BinarySearchTreeNodePlain<T> = { data: node.data }; // Initialize the root plain object
+        const queue: [BinarySearchTreeNode<T>, BinarySearchTreeNodePlain<T>][] = [[node, rootPlainNode]]; // Initialize the queue with the root node and its plain object
+
+        while (queue.length > 0) { // While there are nodes in the queue
+            const [currentNode, currentPlainNode] = queue.shift()!; // Remove and get the first node and its plain object from the queue
+
+            if (currentNode.leftNode) { // If the left child exists
+                currentPlainNode.leftNode = { data: currentNode.leftNode.data }; // Create a plain object for the left child
+                queue.push([currentNode.leftNode, currentPlainNode.leftNode]);  // Add the left child and its plain object to the queue
+            }
+
+            if (currentNode.rightNode) { // If the right child exists
+                currentPlainNode.rightNode = { data: currentNode.rightNode.data }; // Create a plain object for the right child
+                queue.push([currentNode.rightNode, currentPlainNode.rightNode]); // Add the right child and its plain object to the queue
+            }
         }
+
+        return rootPlainNode; // Return the root plain object 
     }
 
     // Method to get the root of the tree as a plalin object
