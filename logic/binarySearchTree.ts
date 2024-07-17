@@ -140,4 +140,25 @@ export class BinarySearchTree<T> {
         }
         return depth;
     }
+
+    // Method to calculate the width of the tree
+    getWidth(): number {
+        if (!this.root) return 0;
+
+        let maxWidth = 0;
+        const queue: BinarySearchTreeNode<T>[] = [];
+        queue.push(this.root);
+
+        while (queue.length > 0) {
+            const levelSize = queue.length;
+            maxWidth = Math.max(maxWidth, levelSize);
+
+            for (let i = 0; i < levelSize; i++) {
+                const node = queue.shift()!;
+                if (node.leftNode) queue.push(node.leftNode);
+                if (node.rightNode) queue.push(node.rightNode);
+            }
+        }
+        return maxWidth;
+    }
 }
