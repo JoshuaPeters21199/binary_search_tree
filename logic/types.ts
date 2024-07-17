@@ -6,10 +6,10 @@ export interface BinarySearchTreeNodePlain<T> {
 }
 
 // Interfaces for 
-type NestedValue = string | number | boolean | NestedObject | NestedArray;
+export type NestedValue = string | number | boolean | NestedObject | NestedArray;
 
-interface NestedObject {
+export interface NestedObject {
     [key: string]: NestedValue;
 }
 
-interface NestedArray extends Array<NestedValue> {}
+export interface NestedArray extends Array<NestedValue> {}
