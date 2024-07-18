@@ -5,11 +5,11 @@ export interface BinarySearchTreeNodePlain<T> {
     rightNode?: BinarySearchTreeNodePlain<T>;
 }
 
-// Interfaces for 
-export type NestedValue = string | number | boolean | NestedObject | NestedArray;
-
-export interface NestedObject {
-    [key: string]: NestedValue;
+/**
+ * Represents a node in a binary tree
+ */
+export interface TreeNode {
+    data: number;
+    leftNode?: TreeNode;
+    rightNode?: TreeNode;
 }
-
-export interface NestedArray extends Array<NestedValue> {}
