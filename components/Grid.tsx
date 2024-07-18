@@ -29,14 +29,24 @@ const Grid = () => {
   const tree: TreeNode = JSON.parse(x); // Convert JSON string to JSON
   const layers = getValuesByLayer(tree); // Create an array of array that contain the tree layers
   const gridWidth = (bst.getWidth() * 2) - 2; // Get width of grid to display the tree
+  const gridHeight = (bst.getDepth() - 1) + bst.getDepth();
 
   const nodeLocations = createGridMatrix(gridWidth, layers);
 
-  console.log(nodeLocations);
-
   return (
     <>
-      <div className='grid grid-cols-7 gap-2'></div>
+      <div className='grid gap-2 justify-center' style={{ gridTemplateColumns: `repeat(${gridWidth + 1})` }}>
+        {nodeLocations.map((row, rowIndex) => (
+          row.map((item, colIndex) => (
+            <div
+              key={`${rowIndex}-${colIndex}`}
+              className='p-2 flex justify-center border rounded'
+            >
+              {item}
+            </div>
+          ))
+        ))}
+      </div>
     </>
   )
 }

@@ -10,7 +10,8 @@ export function createGridMatrix(gridWidth: number, treeArray: number[][]): numb
     let edgeDiv = 2;
 
     for (let i = 0; i < treeArray.length; i++) {
-        let rowArr: number[] = [];
+        let nodeArr: number[] = [];
+        let edgeArr: number[] = [];
 
         const firstNode = Math.floor(gridWidth / edgeDiv);
         const lastNode = gridWidth - firstNode;
@@ -21,34 +22,36 @@ export function createGridMatrix(gridWidth: number, treeArray: number[][]): numb
         for (let j = 0; j <= gridWidth; j++) {
 
             if (j === firstNode) {
-                rowArr.push(treeArray[i][0]);
-                nodeLocation = firstNode + nodeSpacing;
+                nodeArr.push(treeArray[i][0]); // Add first node to nodeArr
+                nodeLocation = firstNode + nodeSpacing; // Update the next node location
+                edgeArr.push(-1); // Add -1 key to edgeArr
             } 
             else if (j === nodeLocation) {
-                rowArr.push(treeArray[i][iIndex]);
+                nodeArr.push(treeArray[i][iIndex]);
                 nodeLocation += nodeSpacing;
                 iIndex++;
+                if (i !== treeArray.length - 1) {
+                    edgeArr.push(-1);
+                }
             }
             else if (j === lastNode) {
-                rowArr.push(treeArray[i][treeArray[i].length - 1]);
+                nodeArr.push(treeArray[i][treeArray[i].length - 1]);
                 nodeLocation = 0;
                 iIndex = 0;
             }      
             else {
-                rowArr.push(0);
+                nodeArr.push(0);
+                edgeArr.push(0);
             }
         }
 
         edgeDiv *= 2;
+
         if (i !== treeArray.length - 1) {
-            nodeMatrix.push(rowArr);
-            let edgeArr = [];
-            for (let k = 0; k < gridWidth + 1; k++) {
-                edgeArr.push(0);
-            }
+            nodeMatrix.push(nodeArr);
             nodeMatrix.push(edgeArr);
         } else {
-            nodeMatrix.push(rowArr);
+            nodeMatrix.push(nodeArr);
         }
     }
 
