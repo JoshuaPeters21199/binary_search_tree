@@ -1,7 +1,8 @@
 import React from 'react'
 import Node from './Node'
 import { BinarySearchTree } from '@/logic/binarySearchTree'
-import { BinarySearchTreeNodePlain } from '@/logic/types';
+import { BinarySearchTreeNodePlain, TreeNode } from '@/logic/types';
+import { getValuesByLayer } from '@/logic/getValuesByLayer';
 
 function comparator(a: number, b: number) {
   if (a < b) return -1;
@@ -23,12 +24,16 @@ const Grid = () => {
   bst.insert(8);
 
   const rootNode = bst.getRootAsPlainObject();
+
+  const x = JSON.stringify(rootNode, null, 2);
+  const tree: TreeNode = JSON.parse(x);
+  const layers = getValuesByLayer(tree);
+
   return (
     <>
-      <pre>{JSON.stringify(rootNode, null, 2)}</pre>
-      <p>{typeof(rootNode)}</p>
-      <p>{rootNode?.data}</p>
-      <div className='grid grid-cols-7 gap-2'></div>
+      <div className='grid grid-cols-7 gap-2'>
+        <p>{layers}</p>
+      </div>
     </>
   )
 }

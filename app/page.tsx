@@ -7,7 +7,7 @@ export default function Home() {
     <main className='flex flex-col justify-center'>
       <Hero />
       <Grid />
-      <TreeOptions />
+      {/* <TreeOptions /> */}
     </main>
   );
 }
