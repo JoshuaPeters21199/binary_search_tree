@@ -1,8 +1,9 @@
 import React from 'react'
-import Node from './Node'
+// import Node from './Node'
 import { BinarySearchTree } from '@/logic/binarySearchTree'
-import { BinarySearchTreeNodePlain, TreeNode } from '@/logic/types';
+import { TreeNode } from '@/logic/types';
 import { getValuesByLayer } from '@/logic/getValuesByLayer';
+import { createGridMatrix } from '@/logic/createGridMatrix';
 
 function comparator(a: number, b: number) {
   if (a < b) return -1;
@@ -23,17 +24,19 @@ const Grid = () => {
   bst.insert(6);
   bst.insert(8);
 
-  const rootNode = bst.getRootAsPlainObject();
+  const rootNode = bst.getRootAsPlainObject(); // Extract the tree object
+  const x = JSON.stringify(rootNode, null, 2); // Convert the tree object to JSON string
+  const tree: TreeNode = JSON.parse(x); // Convert JSON string to JSON
+  const layers = getValuesByLayer(tree); // Create an array of array that contain the tree layers
+  const gridWidth = (bst.getWidth() * 2) - 2; // Get width of grid to display the tree
 
-  const x = JSON.stringify(rootNode, null, 2);
-  const tree: TreeNode = JSON.parse(x);
-  const layers = getValuesByLayer(tree);
+  const nodeLocations = createGridMatrix(gridWidth, layers);
+
+  console.log(nodeLocations);
 
   return (
     <>
-      <div className='grid grid-cols-7 gap-2'>
-        <p>{layers}</p>
-      </div>
+      <div className='grid grid-cols-7 gap-2'></div>
     </>
   )
 }

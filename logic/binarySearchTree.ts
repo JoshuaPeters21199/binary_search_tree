@@ -67,14 +67,14 @@ export class BinarySearchTree<T> {
     inOrderTraversal(node: BinarySearchTreeNode<T> | undefined): void {
         if (node) {
             this.inOrderTraversal(node.leftNode);
-            console.log(node.data);
+            // console.log(node.data);
             this.inOrderTraversal(node.rightNode);
         }
     }
 
     preOrderTraversal(node: BinarySearchTreeNode<T> | undefined): void {
         if (node) {
-            console.log(node.data);
+            // console.log(node.data);
             this.preOrderTraversal(node.leftNode);
             this.preOrderTraversal(node.rightNode);
         }
@@ -84,7 +84,7 @@ export class BinarySearchTree<T> {
         if (node) {
             this.postOrderTraversal(node.leftNode);
             this.postOrderTraversal(node.rightNode);
-            console.log(node.data);
+            // console.log(node.data);
         }
     }
 
